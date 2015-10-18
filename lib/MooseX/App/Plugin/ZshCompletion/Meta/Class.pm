@@ -1,0 +1,21 @@
+package MooseX::App::Plugin::ZshCompletion::Meta::Class;
+# ABSTRACT: Meta class for MooseX::App::Plugin::ZshCompletion
+
+use 5.010;
+
+use namespace::autoclean;
+use Moose::Role;
+
+use MooseX::App::Plugin::ZshCompletion::Command;
+
+around '_build_app_commands' => sub {
+    my $orig = shift;
+    my $self = shift;
+
+    my $return = $self->$orig(@_);
+    $return->{zsh_completion} ||= 'MooseX::App::Plugin::ZshCompletion::Command';
+
+    return $return;
+};
+
+1;
