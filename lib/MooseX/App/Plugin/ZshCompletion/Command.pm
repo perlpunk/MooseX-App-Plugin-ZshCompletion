@@ -59,12 +59,12 @@ EOM
 
             my @opt = split ' ', $name;
             if (@opt > 1) {
+                # '(-q --quiet)'{-q,--quiet}'[Show minimal output]' \
                 $option_list .= "        '(@{[ @opt ]})'\{@{[ join ',', @opt ]}\}'\[$doc\]";
             }
             else {
                 $option_list .= "        '$opt[0]\[$doc\]";
             }
-            # '(-q --quiet)'{-q,--quiet}'[Show minimal output]' \
             if ($opt->has_type_constraint) {
                 if ($opt->type_constraint->is_a_type_of('Bool')) {
                 }
@@ -108,19 +108,19 @@ _$prefix() {
     ;;
 
     args)
-        curcontext="\${curcontext%:*:*}:myapp-cmd-\$words[1]:"
+        curcontext="\${curcontext%:*:*}:$prefix-cmd-\$words[1]:"
 
         case \$line[1] in
 $subcmd
         help)
-            _myapp_help
+            _${prefix}_help
         esac
 
     esac
 }
 
 $subcmd_functions
-_myapp_help() {
+_${prefix}_help() {
     compadd $command_list
 }
 

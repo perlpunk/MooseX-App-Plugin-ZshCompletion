@@ -48,12 +48,14 @@ In your base class:
  package MyApp;
  use MooseX::App qw/ ZshCompletion /;
 
+     .zshrc:
+     fpath=('completion-dir/zsh' $fpath)
+
 In your shell
 
- .zshrc:
- fpath=('completion-dir/zsh' $fpath)
- zsh$ myapp zsh_completion > completion-dir/_myapp
- zsh$ exec zsh
+ zsh% myapp zsh_completion > completion-dir/_myapp
+ zsh% chmod u+x completion-dir/_myapp
+ zsh% exec zsh
 
 =head1 DESCRIPTION
 
