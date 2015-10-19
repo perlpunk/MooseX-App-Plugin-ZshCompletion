@@ -134,3 +134,21 @@ EOT
 
 __PACKAGE__->meta->make_immutable;
 1;
+
+__END__
+
+=head1 NAME
+
+MooseX::App::Plugin::ZshCompletion::Command - generates the zsh completion for MooseX::App::Plugin::ZshCompletion
+
+=head1 METHODS
+
+=over 4
+
+=item zsh_completion
+
+This method is doing the generation.
+
+=back
+
+=cut

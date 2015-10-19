@@ -61,6 +61,14 @@ In your shell
 
 This plugin generates a zsh completion definition for your application.
 
+=head1 METHODS
+
+=over 4
+
+=item plugin_metaroles
+
+=back
+
 =head1 SEE ALSO
 
 L<MooseX::App::Plugin::BashCompletion>

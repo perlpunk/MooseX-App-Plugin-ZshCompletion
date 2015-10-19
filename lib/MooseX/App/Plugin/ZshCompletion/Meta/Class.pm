@@ -21,3 +21,10 @@ around '_build_app_commands' => sub {
 };
 
 1;
+
+__END__
+
+=head1 NAME
+
+MooseX::App::Plugin::ZshCompletion::Meta::Class - Meta class for MooseX::App::Plugin::ZshCompletion
+
