@@ -1,11 +1,12 @@
 package MooseX::App::Plugin::ZshCompletion::Meta::Class;
 # ABSTRACT: Meta class for MooseX::App::Plugin::ZshCompletion
+use namespace::autoclean;
+use Moose::Role;
 
 use 5.010;
 our $VERSION = '0.000'; # VERSION
 
-use namespace::autoclean;
-use Moose::Role;
+
 
 use MooseX::App::Plugin::ZshCompletion::Command;
 

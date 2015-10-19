@@ -1,11 +1,11 @@
 package MooseX::App::Plugin::ZshCompletion::Command;
 # ABSTRACT: Command class for MooseX::App::Plugin::ZshCompletion
 
+use Moose;
 use 5.010;
 our $VERSION = '0.000'; # VERSION
 
 use namespace::autoclean;
-use Moose;
 use MooseX::App::Command;
 
 command_short_description q(Zsh completion automator);
