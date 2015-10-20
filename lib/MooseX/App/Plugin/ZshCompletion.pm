@@ -73,5 +73,15 @@ This plugin generates a zsh completion definition for your application.
 
 L<MooseX::App::Plugin::BashCompletion>
 
+=head1 LICENSE
+
+COPYRIGHT AND LICENSE
+
+Copyright (C) 2015 by Tina Mueller
+
+This library is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself. The full text of the license can be found
+in the LICENSE file.
+
 =cut
 
