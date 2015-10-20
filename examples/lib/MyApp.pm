@@ -28,6 +28,13 @@ parameter 'server' => (
     documentation => q[Mailserver],
 );
 
+parameter 'type' => (
+    is            => 'rw',
+    isa           => 'Str',
+    required      => 0,
+    documentation => q[IMAP or POP3],
+);
+
 option 'max' => (
     is            => 'rw',
     isa           => 'Int',

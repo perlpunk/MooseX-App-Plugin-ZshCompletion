@@ -1,0 +1,93 @@
+#compdef myapp
+
+# Built with MooseX::App::Plugin::ZshCompletion::Command on 2015/10/20
+
+myapp_COMMANDS='help zsh_completion fetch_mail bash_completion'
+
+_myapp() {
+    typeset -A opt_args
+    local curcontext="$curcontext" state line context
+
+    _arguments -s \
+        '1: :->subcmd' \
+        '*: :->args' \
+    && ret=0
+
+    case $state in
+
+    subcmd)
+        compadd help zsh_completion fetch_mail bash_completion
+    ;;
+
+    args)
+        curcontext="${curcontext%:*:*}:myapp-cmd-$words[1]:"
+
+        case $line[1] in
+    bash_completion)
+        _myapp_bash_completion
+    ;;
+    fetch_mail)
+        _myapp_fetch_mail
+    ;;
+    zsh_completion)
+        _myapp_zsh_completion
+    ;;
+
+        help)
+            _myapp_help
+        esac
+
+    esac
+}
+
+_myapp_bash_completion() {
+    _arguments -C \
+    '1: :->subcmd' \
+        '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
+ && ret=0
+
+
+}
+
+_myapp_fetch_mail() {
+    _arguments -C \
+    '1: :->subcmd' \
+    '2: :->server' \
+    '*: :->type' \
+        '--verbose[be verbose]' \
+        '--max[Maximum number of emails to fetch]:max' \
+        '--dir[Output '"'"'dir'"'"']:dir' \
+        '--user[User]:user' \
+        '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
+ && ret=0
+
+    curcontext="${curcontext%:*:*}:myapp-cmd-$words[1]:"
+
+    case $state in
+        server)
+            _files
+        ;;
+        type)
+            _files
+        ;;
+
+    esac
+
+}
+
+_myapp_zsh_completion() {
+    _arguments -C \
+    '1: :->subcmd' \
+        '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
+ && ret=0
+
+
+}
+
+
+_myapp_help() {
+    compadd zsh_completion fetch_mail bash_completion
+}
+
+
+

@@ -18,7 +18,7 @@ ok(length $command, "fetch_mail command present");
 cmp_ok($command, '=~', qr/
     _arguments\s-C .*
     '1:\s:->subcmd' .*
-    '\*:\s:->args' .*
+    '2:\s:->server' .*
     '--verbose\[be\sverbose\]' .*
     '--max\[Maximum\snumber\sof\semails\sto\sfetch\]:max'
     /xs, "options present");
