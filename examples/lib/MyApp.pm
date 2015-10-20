@@ -74,4 +74,43 @@ sub run {
     say "Fetched $count emails";
 }
 
+package MyApp::Lala;
+use MooseX::App::Command; # important (also imports Moose)
+extends qw(MyApp); # optional, only if you want to use global options from base class
+
+use Moose::Util::TypeConstraints;
+
+enum 'FooBar', [qw(foo bar boo)];
+
+parameter 'bar' => (
+    is            => 'rw',
+    isa           => 'FooBar',
+    required      => 1,
+    cmd_position  => 2,
+    documentation => q[bar],
+);
+
+parameter 'boo' => (
+    is            => 'rw',
+    isa           => 'FooBar',
+    required      => 1,
+    cmd_position  => 3,
+    documentation => q[boo],
+);
+
+parameter 'foo' => (
+    is            => 'rw',
+    isa           => 'FooBar',
+    required      => 1,
+    cmd_position  => 1,
+    documentation => q[foo],
+);
+
+
+sub run {
+    my ($self) = @_;
+    say sprintf "foo: %s, bar:%s, boo: %s", $self->foo, $self->bar, $self->boo;
+}
+
+
 1;
