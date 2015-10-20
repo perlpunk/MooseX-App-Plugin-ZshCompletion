@@ -1,8 +1,8 @@
 #compdef myapp
 
-# Built with MooseX::App::Plugin::ZshCompletion::Command on 2015/10/20
+# Built with MooseX::App::Plugin::ZshCompletion::Command on 2015/10/21
 
-myapp_COMMANDS='help zsh_completion fetch_mail bash_completion'
+myapp_COMMANDS='help bash_completion fetch_mail zsh_completion'
 
 _myapp() {
     typeset -A opt_args
@@ -16,7 +16,7 @@ _myapp() {
     case $state in
 
     subcmd)
-        compadd help zsh_completion fetch_mail bash_completion
+        compadd help bash_completion fetch_mail zsh_completion
     ;;
 
     args)
@@ -53,8 +53,8 @@ _myapp_fetch_mail() {
     _arguments -C \
     '1: :->subcmd' \
     '2: :->server' \
-    '*: :->type' \
         '--verbose[be verbose]' \
+        '--servertype[Mailserver type: IMAP or POP3]:servertype:(IMAP POP3)' \
         '--max[Maximum number of emails to fetch]:max' \
         '--dir[Output '"'"'dir'"'"']:dir' \
         '--user[User]:user' \
@@ -65,9 +65,6 @@ _myapp_fetch_mail() {
 
     case $state in
         server)
-            _files
-        ;;
-        type)
             _files
         ;;
 
@@ -86,7 +83,7 @@ _myapp_zsh_completion() {
 
 
 _myapp_help() {
-    compadd zsh_completion fetch_mail bash_completion
+    compadd bash_completion fetch_mail zsh_completion
 }
 
 

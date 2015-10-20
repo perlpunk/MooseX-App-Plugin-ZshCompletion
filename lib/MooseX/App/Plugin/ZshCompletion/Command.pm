@@ -16,7 +16,7 @@ sub zsh_completion {
     my %command_map;
     my $app_meta        = $app->meta;
     my $commands        = $app_meta->app_commands;
-    my $command_list    = join (' ', keys %{$commands});
+    my $command_list    = join (' ', sort keys %{$commands});
     my $package         = __PACKAGE__;
     my $prefix          = $app_meta->app_base;
 
@@ -57,11 +57,21 @@ EOM
         my $i = 2;
         for my $param (@{ $command_map{ $command }->{parameters} }) {
             my $name = $param->cmd_usage_name;
+            my $doc = $param->documentation;
+
+            my $comp = "_files";
+            if ($param->has_type_constraint) {
+                my $tc = $param->type_constraint;
+                if ($tc->isa('Moose::Meta::TypeConstraint::Enum')) {
+                    my $values = join ' ', sort @{ $tc->values };
+                    $comp = "compadd -X '$doc' $values";
+                }
+            }
             my $position = $param->is_required ? $i : '*';
             $parameter_list .= qq{    '$position: :->$name' \\\n};
             $parameter_completion .= <<"EOM";
         $name)
-            _files
+            $comp
         ;;
 EOM
             $i++;
@@ -91,7 +101,12 @@ EOM
                 $option_list .= "        '$opt[0]\[$doc\]";
             }
             if ($opt->has_type_constraint) {
-                if ($opt->type_constraint->is_a_type_of('Bool')) {
+                my $tc = $opt->type_constraint;
+                if ($tc->isa('Moose::Meta::TypeConstraint::Enum')) {
+                    my $values = join ' ', sort @{ $tc->values };
+                    $option_list .= ":$names[0]:($values)";
+                }
+                elsif ($opt->type_constraint->is_a_type_of('Bool')) {
                 }
                 else {
                     $option_list .= ":$names[0]";

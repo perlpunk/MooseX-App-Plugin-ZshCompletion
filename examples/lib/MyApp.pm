@@ -20,6 +20,10 @@ package MyApp::FetchMail;
 use MooseX::App::Command; # important (also imports Moose)
 extends qw(MyApp); # optional, only if you want to use global options from base class
 
+use Moose::Util::TypeConstraints;
+
+enum 'MailserverType', [qw(IMAP POP3)];
+
 # Positional parameter
 parameter 'server' => (
     is            => 'rw',
@@ -28,11 +32,11 @@ parameter 'server' => (
     documentation => q[Mailserver],
 );
 
-parameter 'type' => (
+option 'servertype' => (
     is            => 'rw',
-    isa           => 'Str',
-    required      => 0,
-    documentation => q[IMAP or POP3],
+    isa           => 'MailserverType',
+    required      => 1,
+    documentation => q[Mailserver type: IMAP or POP3],
 );
 
 option 'max' => (
