@@ -2,8 +2,6 @@
 
 # Built with MooseX::App::Plugin::ZshCompletion::Command on 2015/10/21
 
-myapp_COMMANDS='help bash_completion fetch_mail lala zsh_completion'
-
 _myapp() {
     typeset -A opt_args
     local curcontext="$curcontext" state line context

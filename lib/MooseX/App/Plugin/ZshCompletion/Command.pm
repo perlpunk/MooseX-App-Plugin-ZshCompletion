@@ -131,8 +131,6 @@ EOM
 
 # Built with $package on $year/$mon/$mday
 
-${prefix}_COMMANDS='help $command_list'
-
 _$prefix() {
     typeset -A opt_args
     local curcontext="\$curcontext" state line context
