@@ -48,8 +48,9 @@ In your base class:
  package MyApp;
  use MooseX::App qw/ ZshCompletion /;
 
-     .zshrc:
-     fpath=('completion-dir/zsh' $fpath)
+In your .zshrc:
+
+    fpath=('completion-dir/zsh' $fpath)
 
 In your shell
 
@@ -62,17 +63,17 @@ In your shell
 This plugin generates a zsh completion definition for your application.
 
 Completion works for subcommands, parameters and options. If an option or
-parameter is declared as an enum with Moose::Meta::TypeConstraint you
+parameter is declared as an C<enum> with L<Moose::Meta::TypeConstraint> you
 will get a completion for the enum values.
 
 Option completions will show its descriptions also.
 
-The default completion type is C<_files>
+The default completion type for parameters is C<_files>
 
 In the examples directory you find C<myapp>.
 
     % myapp <TAB>
-    bash_completion  fetch_mail       help             lala             zsh_completion
+    bash_completion  fetch_mail    help          lala          zsh_completion
 
     % myapp fetch_mail server.example -<TAB>
     --dir                     -- Output 'dir'
