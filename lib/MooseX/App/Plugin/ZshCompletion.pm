@@ -50,12 +50,12 @@ In your base class:
 
 In your .zshrc:
 
-    fpath=('completion-dir/zsh' $fpath)
+    fpath=('/path/to/completion-dir' $fpath)
 
 In your shell
 
- zsh% myapp zsh_completion > completion-dir/_myapp
- zsh% chmod u+x completion-dir/_myapp
+ zsh% myapp zsh_completion > /path/to/completion-dir/_myapp
+ zsh% chmod u+x /path/to/completion-dir/_myapp
  zsh% exec zsh
 
 =head1 DESCRIPTION
