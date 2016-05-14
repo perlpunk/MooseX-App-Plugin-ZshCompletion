@@ -1,8 +1,8 @@
-#compdef myapp
+#compdef moosex-app-zsh
 
-# Built with MooseX::App::Plugin::ZshCompletion::Command on 2015/10/21
+# Built with MooseX::App::Plugin::ZshCompletion::Command on 2016/05/14
 
-_myapp() {
+_moosex-app-zsh() {
     typeset -A opt_args
     local curcontext="$curcontext" state line context
 
@@ -18,30 +18,30 @@ _myapp() {
     ;;
 
     args)
-        curcontext="${curcontext%:*:*}:myapp-cmd-$words[1]:"
+        curcontext="${curcontext%:*:*}:moosex-app-zsh-cmd-$words[1]:"
 
         case $line[1] in
     bash_completion)
-        _myapp_bash_completion
+        _moosex-app-zsh_bash_completion
     ;;
     fetch_mail)
-        _myapp_fetch_mail
+        _moosex-app-zsh_fetch_mail
     ;;
     lala)
-        _myapp_lala
+        _moosex-app-zsh_lala
     ;;
     zsh_completion)
-        _myapp_zsh_completion
+        _moosex-app-zsh_zsh_completion
     ;;
 
         help)
-            _myapp_help
+            _moosex-app-zsh_help
         esac
 
     esac
 }
 
-_myapp_bash_completion() {
+_moosex-app-zsh_bash_completion() {
     _arguments -C \
     '1: :->subcmd' \
         '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
@@ -50,7 +50,7 @@ _myapp_bash_completion() {
 
 }
 
-_myapp_fetch_mail() {
+_moosex-app-zsh_fetch_mail() {
     _arguments -C \
     '1: :->subcmd' \
     '2: :->server' \
@@ -62,7 +62,7 @@ _myapp_fetch_mail() {
         '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
  && ret=0
 
-    curcontext="${curcontext%:*:*}:myapp-cmd-$words[1]:"
+    curcontext="${curcontext%:*:*}:moosex-app-zsh-cmd-$words[1]:"
 
     case $state in
         server)
@@ -73,7 +73,7 @@ _myapp_fetch_mail() {
 
 }
 
-_myapp_lala() {
+_moosex-app-zsh_lala() {
     _arguments -C \
     '1: :->subcmd' \
     '2: :->foo' \
@@ -83,7 +83,7 @@ _myapp_lala() {
         '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
  && ret=0
 
-    curcontext="${curcontext%:*:*}:myapp-cmd-$words[1]:"
+    curcontext="${curcontext%:*:*}:moosex-app-zsh-cmd-$words[1]:"
 
     case $state in
         foo)
@@ -100,7 +100,7 @@ _myapp_lala() {
 
 }
 
-_myapp_zsh_completion() {
+_moosex-app-zsh_zsh_completion() {
     _arguments -C \
     '1: :->subcmd' \
         '(--help -h --usage -?)'{--help,-h,--usage,-?}'[Prints this usage information.]' \
@@ -110,7 +110,7 @@ _myapp_zsh_completion() {
 }
 
 
-_myapp_help() {
+_moosex-app-zsh_help() {
     compadd bash_completion fetch_mail lala zsh_completion
 }
 
