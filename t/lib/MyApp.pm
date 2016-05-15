@@ -4,7 +4,7 @@ use 5.010;
 
 package MyApp;
 
-use MooseX::App qw/ Color BashCompletion ZshCompletion /;
+use MooseX::App qw/ BashCompletion ZshCompletion /;
 
 option 'verbose' => (
     is            => 'rw',
